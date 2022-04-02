@@ -10,6 +10,7 @@ import "hardhat/console.sol";
 contract Marketplace is ReentrancyGuard {
 
     // Variables
+    // address payable public immutable feeAccount
     address payable public immutable feeAccount; // the account that receives fees
     uint public immutable feePercent; // the fee percentage on sales 
     uint public itemCount; 
@@ -48,6 +49,7 @@ contract Marketplace is ReentrancyGuard {
     }
 
     // Make item to offer on the marketplace
+    // IERC721 instance receives the Marketplace contract and provides a unique NFT address
     function makeItem(IERC721 _nft, uint _tokenId, uint _price) external nonReentrant {
         require(_price > 0, "Price must be greater than zero");
         // increment itemCount
